@@ -24,9 +24,15 @@ def generate_certificate(data):
         c.setFont("Helvetica", 15)
         c.drawCentredString(width/2, height - 2.5*inch, "This is to certify that")
 
+        # Validate required fields
+        if 'name' not in data or not data['name']:
+            raise ValueError("Name is required")
+        if 'course' not in data or not data['course']:
+            raise ValueError("Course is required")
+
         # Name
         c.setFont("Helvetica-Bold", 25)
-        c.drawCentredString(width/2, height - 3.5*inch, data.get('name', 'Unknown Name'))
+        c.drawCentredString(width/2, height - 3.5*inch, data['name'])
 
         # Course Text
         c.setFont("Helvetica", 15)
@@ -34,7 +40,7 @@ def generate_certificate(data):
 
         # Course Name
         c.setFont("Helvetica-Bold", 20)
-        c.drawCentredString(width/2, height - 5*inch, data.get('course', 'Unknown Course'))
+        c.drawCentredString(width/2, height - 5*inch, data['course'])
 
         # Date
         c.setFont("Helvetica", 12)
